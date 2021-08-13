@@ -112,17 +112,22 @@ function resetGame() {
 function dealCards() {
     isAlive = true
     hasGameStarted = true
+
     let firstCard = getRandomCard()
     let secondCard = getRandomCard()
+
     cards = [firstCard, secondCard]
+
     sum = getSum(cards)
+
     dealerCards = [getRandomCard()]
+
     dealerSum = getSum(dealerCards)
+
     renderGame()
 }
 
 function renderGame() {
-    
     dealerCardsEl.textContent = ""
     for (let i = 0; i < dealerCards.length; i++) {
         let path = `images/${dealerCards[i].value + dealerCards[i].suit}.png`
@@ -130,6 +135,7 @@ function renderGame() {
             <img src="${path}" class="class-img">
         `
     }
+
     dealerSumEl.textContent = "Dealer's sum: " + dealerSum
     
     cardsEl.textContent = ""
@@ -141,6 +147,7 @@ function renderGame() {
     }
     
     sumEl.textContent = "Sum: " + sum
+
     if (sum <= 20) {
         message = "Do you want to draw a new card?"
     } else if (sum === 21) {
@@ -150,6 +157,7 @@ function renderGame() {
         message = "You're out of the game!"
         isAlive = false
     }
+
     messageEl.textContent = message
 }
 
@@ -176,6 +184,9 @@ function declareWinner() {
         player.chips += bet
         renderPlayer()
     }
+
+    isAlive = false
+    hasGameStarted = false
 }
 
 function newDealerCard() {
